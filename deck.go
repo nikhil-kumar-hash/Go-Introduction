@@ -1,0 +1,58 @@
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
+
+//create a new type of deck
+//shoudld be a slice of strings
+type deck []string      // new type
+var totalCards int = 12 // dynamic declaration does'nt work
+
+// functions
+
+func deal(d deck, cards int) (deck, deck) {
+
+	// cards represent how many cards we need to deal
+
+	return d[:cards], d[cards:]
+
+}
+
+func newDeck() deck {
+
+	cards := deck{}
+
+	cardSuits := []string{"Spades", "Clubs", "Hearts", "Diamonds"}
+	cardValues := []string{"Ace", "Two", "Three"}
+
+	for i := range cardSuits {
+		for j := range cardValues {
+			cards = append(cards, cardValues[j]+" of "+cardSuits[i])
+		}
+	}
+
+	return cards
+}
+
+// recievers
+
+func (d deck) print() { // reciever function
+	for i := range d {
+		fmt.Println(d[i])
+	}
+}
+
+func (d deck) toString() string {
+
+	// converting deck to string with seperator as ","
+	return strings.Join([]string(d), ",")
+
+}
+
+func (d deck) saveToFIle(fileName string) error {
+	// converting deck to byte slice
+	return ioutil.WriteFile(fileName,[]byte(d.toString()),0666);
+}
