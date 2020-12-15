@@ -8,6 +8,7 @@ func main() {
 	// var mp2 map[string]string;
 	// mp2 := make(map[string]string);
 
+		
 	// insertion
 	mp[0] = 1
 	mp[12] = 123
@@ -29,7 +30,6 @@ func main() {
 	for key, value := range mp {
 		fmt.Println(key, value)
 	}
-
 }
 
 // Notes
