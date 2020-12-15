@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 //create a new type of deck
@@ -76,4 +78,16 @@ func (d deck) toString() string {
 func (d deck) saveToFIle(fileName string) error {
 	// converting deck to byte slice
 	return ioutil.WriteFile(fileName, []byte(d.toString()), 0666)
+}
+
+func (d deck) Shuffle() {
+
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1) // Pseudo random generator
+
+		d[i], d[newPosition] = d[newPosition], d[i] // swapping
+	}
 }
