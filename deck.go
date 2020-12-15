@@ -28,8 +28,8 @@ func newDeck() deck {
 
 	cards := deck{}
 
-	cardSuits := []string{"Spades", "Clubs", "Hearts", "Diamonds"}
-	cardValues := []string{"Ace", "Two", "Three"}
+	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
+	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
 	for i := range cardSuits {
 		for j := range cardValues {
