@@ -1,0 +1,44 @@
+package main
+
+import "fmt"
+
+// struct for a person
+
+type contactInfo struct {
+	email   string
+	zipCode int
+}
+
+type person struct {
+	firstName string
+	lastName  string
+	age       int
+	contactInfo
+}
+
+func main() {
+
+	nik := person{
+		firstName: "Nikhil",
+		lastName:  "Kumar",
+		age:       23,
+		contactInfo: contactInfo{
+			email:   "nikhil.kumar@kreditzy.com",
+			zipCode: 121006,
+		},
+	}
+	nik.print()
+	nik.updateName("Akhil")
+	nik.print()
+}
+
+func (p person) print() {
+	fmt.Printf("%+v", p)
+	fmt.Println("\n")
+}
+
+func (p *person) updateName(newFirstName string) {
+	//  dealing with a pointer of a person
+	//(*p).firstName = newFirstName // updating copy
+	p.firstName = newFirstName
+}
